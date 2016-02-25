@@ -1,22 +1,25 @@
+package processor;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+import javax.annotation.PostConstruct;
 
-    public static void main(String... args) {
+import org.springframework.stereotype.Component;
 
+@Component
+public class Processor {
+
+    @PostConstruct
+    public void init() {
         System.out.println("==========================================================");
         System.out.println("Processador de texto para uma estrutura de banco de dados.");
         System.out.println("==========================================================");
 
-        if (args.length < 1) {
-            System.out.println("Informe um nome de arquivo de entrada");
-            return;
-        }
-        String filename = args[0];
+        String filename = "data.txt";
 
         List<DataObject> dataObjects = new ArrayList<>();
 
@@ -30,7 +33,7 @@ public class Main {
                 if (line.isEmpty()) {
                     dataObjects.add(object);
                     object = new DataObject();
-                } else { // Se È linha de dados, preenche no objeto atual
+                } else { // Se √© linha de dados, preenche no objeto atual
                     String[] lineKeyValue = line.split("\t");
                     object.insertData(lineKeyValue[0], lineKeyValue[1]);
                 }
@@ -44,9 +47,8 @@ public class Main {
             // TODO faz alguma coisa com a estrutura de dados dataObjects.
 
         } catch (IOException e) {
-            System.out.println("Nome de arquivo de entrada inv·lido.");
+            System.out.println("Nome de arquivo de entrada inv√°lido.");
             e.printStackTrace();
         }
-
     }
 }
