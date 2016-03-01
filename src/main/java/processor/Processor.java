@@ -8,10 +8,17 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import processor.db.DataObjectRepository;
+import processor.entity.DataObject;
 
 @Component
 public class Processor {
+
+    @Autowired
+    private DataObjectRepository repository;
 
     @PostConstruct
     public void init() {
@@ -44,7 +51,10 @@ public class Processor {
 
             System.out.println("Total de objetos processados e estruturados: " + dataObjects.size());
 
-            // TODO faz alguma coisa com a estrutura de dados dataObjects.
+            // Salva todos os objetos no banco
+            for (DataObject data : dataObjects) {
+                repository.save(data);
+            }
 
         } catch (IOException e) {
             System.out.println("Nome de arquivo de entrada inválido.");

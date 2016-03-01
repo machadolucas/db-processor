@@ -1,11 +1,16 @@
-package processor;
+package processor.entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.data.annotation.Id;
+
 public class DataObject {
+
+    @Id
+    private String id;
 
     /**
      * Encapsula o mapa multivalorado (mapa de listas).
@@ -28,16 +33,12 @@ public class DataObject {
         }
     }
 
-    public Map<String, List<String>> getData() {
-        return data;
+    public String getId() {
+        return id;
     }
 
-    public void setData(Map<String, List<String>> data) {
-        this.data = data;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return data.toString();
-    }
 }
