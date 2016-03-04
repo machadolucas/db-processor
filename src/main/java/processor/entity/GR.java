@@ -3,7 +3,7 @@ package processor.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.OnToMany;
+import javax.persistence.ManyToMany;
 
 import lombok.Data;
 
@@ -16,5 +16,6 @@ public class GR {
     @Id
     private String GR;
 
-    @OneToMany
+    @ManyToMany
     private List<Abstract> abstracts;
+}
