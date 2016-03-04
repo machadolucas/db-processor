@@ -15,6 +15,11 @@ public class IS {
 
     @Id
     private String IS;
+    
+    @Id
+    private String Abstract_PMID;
 
     @OManytoOne
     private List<Abstract> abstracts;
+    
+}
