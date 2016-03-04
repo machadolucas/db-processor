@@ -18,3 +18,4 @@ public class LA {
 
     @OneToMany
     private List<Abstract> abstracts;
+}
