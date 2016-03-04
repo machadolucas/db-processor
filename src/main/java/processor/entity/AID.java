@@ -15,6 +15,8 @@ public class AID {
 
     @Id
     private String AID;
+    @Id
+    private String Abstract_PMID;
 
     @ManyToOne
     private List<Abstract> abstracts;
