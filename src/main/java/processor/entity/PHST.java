@@ -15,6 +15,9 @@ public class PHST {
 
     @Id
     private String PHST;
+    
+    @Id
+    private String Abstract_PMID;
 
     @ManyToOne
     private List<Abstract> abstracts;
