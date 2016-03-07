@@ -15,12 +15,13 @@ public class DataObject {
     /**
      * Encapsula o mapa multivalorado (mapa de listas).
      * 
-     * Um exemplo de mapa contido na variável 'data':
+     * Um exemplo de mapa contido na variï¿½vel 'data':
      * 
      * {AttrA=[valor1,valor2,valor3], AttrB=[valorX], AttrC=[ValueA, ValueB]}
      */
 
     Map<String, List<String>> data = new HashMap<>();
+
 
     public void insertData(String key, String value) {
         // Se for uma chave ainda inexistente
@@ -28,12 +29,17 @@ public class DataObject {
             List<String> newList = new ArrayList<>();
             newList.add(value);
             data.put(key, newList);
-        } else { // Se já existir chave, adiciona na lista já existente
+        } else { // Se jï¿½ existir chave, adiciona na lista jï¿½ existente
             data.get(key).add(value);
         }
     }
 
     public String getId() {
+        return id;
+    }
+
+    public String getValue(String key) {
+        List<String> v=data.get(key);
         return id;
     }
 
