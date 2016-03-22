@@ -33,6 +33,9 @@ public class Abstract {
     private String TI;
     
     private String PG;
+
+
+    private String AB;
     
     private String TA;
     
@@ -48,11 +51,11 @@ public class Abstract {
     
     private String SO;
 
-    @ManyToMany
-    private List<PL> Pls;
-    
-    @ManyToOne
-    private List<LA> LAs;
+    private String PL;
+
+    private String LA;
+
+
 
     @OneToMany
     private List<IS> Iss;
@@ -79,4 +82,105 @@ public class Abstract {
         this.PMID = aid;
     }
 
+    public void setVI(String VI) {
+        this.VI = VI;
+    }
+
+    public void setOWN(String OWN) {
+        this.OWN = OWN;
+    }
+
+    public void setSTAT(String STAT) {
+        this.STAT = STAT;
+    }
+
+    public void setDA(String DA) {
+        this.DA = DA;
+    }
+
+    public void setIP(String IP) {
+        this.IP = IP;
+    }
+
+    public void setTI(String TI) {
+        this.TI = TI;
+    }
+
+    public void setDP(String DP) {
+        this.DP = DP;
+    }
+
+    public void setPG(String PG) {
+        this.PG = PG;
+    }
+
+
+    public void setAB(String AB) {
+        this.AB = AB;
+    }
+
+
+    public void setTA(String TA) {
+        this.TA = TA;
+    }
+
+    public void setJT(String JT) {
+        this.JT = JT;
+    }
+
+    public void setSB(String SB) {
+        this.SB = SB;
+    }
+
+    public void setAID(String AID) {
+        this.AID = AID;
+    }
+
+    public void setAD(String AD) {
+        this.AD = AD;
+    }
+
+    public void setPST(String PST) {
+        this.PST = PST;
+    }
+
+    public void setSO(String SO) {
+        this.SO = SO;
+    }
+
+    public void setPL(String PL) {
+        this.PL = PL;
+    }
+
+    public void setLA(String LA) {
+        this.LA = LA;
+    }
+
+    public void setIss(List<IS> iss) {
+        Iss = iss;
+    }
+
+    public void setPTs(List<PT> PTs) {
+        this.PTs = PTs;
+    }
+
+    public void setMHs(List<MH> MHs) {
+        this.MHs = MHs;
+    }
+
+    public void setPHSTs(List<PHST> PHSTs) {
+        this.PHSTs = PHSTs;
+    }
+
+    public void setFAUs(List<FAU> FAUs) {
+        this.FAUs = FAUs;
+    }
+
+    public void setAIDs(List<processor.entity.AID> AIDs) {
+        this.AIDs = AIDs;
+    }
+
+    public void setGRs(List<GR> GRs) {
+        this.GRs = GRs;
+    }
 }

@@ -25,13 +25,13 @@ public class DataObject {
 
     public void insertData(String key, String value) {
         // Se for uma chave ainda inexistente
-        if (data.get(key) == null) {
+        //if (data.get(key) == null) {
             List<String> newList = new ArrayList<>();
             newList.add(value);
             data.put(key, newList);
-        } else { // Se j� existir chave, adiciona na lista j� existente
-            data.get(key).add(value);
-        }
+        //} else { // Se j� existir chave, adiciona na lista j� existente
+           // data.get(key).add(value);
+       // }
     }
 
     public String getId() {
