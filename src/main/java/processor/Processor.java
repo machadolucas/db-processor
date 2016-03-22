@@ -25,33 +25,33 @@ public class Processor {
 
 
     @Autowired
-    private GRRepository gRRepository = new GRRepository();
+    private GRRepository gRRepository ;
 
     @Autowired
-    private AIDRepository aIDRepository = new AIDRepository();
+    private AIDRepository aIDRepository ;
 
     @Autowired
-    AbstractRepository abstractReposity = new AbstractRepository();
+    private AbstractRepository abstractRepository;
 
     @Autowired
-    private FAURepository fAURepository = new FAURepository()
+    private FAURepository fAURepository;
 
     @Autowired
-    private LARepository lARepository = new LARepository()
+    private LARepository lARepository;
 
     @Autowired
-    private MHRepository mHRepository = new MHRepository();
+    private MHRepository mHRepository;
 
     @Autowired
-    private PLRepository pLRepository = new PLRepository();
+    private PLRepository pLRepository;
 
     @Autowired
-    private ISRepository iSRepository = new ISRepository();
+    private ISRepository iSRepository;
     @Autowired
-    private PTRepository pTRepository = new PTRepository();
+    private PTRepository pTRepository;
 
     @Autowired
-    private PHSTRepository pHSTRepository = new PHSTRepository();
+    private PHSTRepository pHSTRepository;
 
 
     @PostConstruct
@@ -59,7 +59,6 @@ public class Processor {
         System.out.println("==========================================================");
         System.out.println("Processador de texto para uma estrutura de banco de dados.");
         System.out.println("==========================================================");
-        String d;
         String filename = "data.txt";
 
         List<DataObject> dataObjects = new ArrayList<>();
@@ -81,7 +80,10 @@ public class Processor {
             List<GR> gRList = new ArrayList<>();
 
             String line;
-            while ((line = br.readLine()) != null) {
+
+
+
+            while ((line = br.readLine()) != null)
                 // Se for uma linha vazia, guarda o objeto populado e prepara um novo
                 if (line.isEmpty()) {
                     dataObjects.add(object);
@@ -89,11 +91,112 @@ public class Processor {
                 } else { // Se é linha de dados, preenche no objeto atual
                     String[] lineKeyValue = line.split("\t");
                     //object.insertData(lineKeyValue[0], lineKeyValue[1]);
-                    if (lineKeyValue[0].equals("AID")) {//dois atributos na classe
+                    Abstract ab = new Abstract();
+                    while(!line.isEmpty()) {
+                        if (lineKeyValue[0].equals("PMID")) {
+                            Long i = Long.parseLong(lineKeyValue[1]);
+                            ab.setPMID(i);
+                        }
+                        if (lineKeyValue[0].equals("OWN")) {
+                            ab.setOWN(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("STAT")) {
+                            ab.setSTAT(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("DA")) {
+                            ab.setDA(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("VI")) {
+                            ab.setVI(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("IP")) {
+                            ab.setIP(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("DP")) {
+                            ab.setDP(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("TI")) {
+                            ab.setTI(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("PG")) {
+                            ab.setPG(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("AB")) {
+                            ab.setAB(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("TA")) {
+                            ab.setTA(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("JT")) {
+                            ab.setJT(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("AID")) {
+                            ab.setAID(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("SB")) {
+                            ab.setSB(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("AD")) {
+                            ab.setAD(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("PST")) {
+                            ab.setPST(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("SO")) {
+                            ab.setSO(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("PL")) {
+                            ab.setPL(lineKeyValue[1]);
+                        }
+                        if (lineKeyValue[0].equals("LA")) {
+                            ab.setLA(lineKeyValue[1]);
+                        }
+                    }
+                    abstractList.add(ab);
+            }
+
+
+            // Essa linha imprimiria todos os objetos processados
+            // dataObjects.forEach(System.out::println);
+            //System.out.println("Total de objetos processados e estruturados: " + dataObjects.size());
+
+            // Salva todos os objetos no banco
+            for (Abstract data : abstractList) {
+
+                abstractRepository.save(data);
+               /*GRRepository.save(new GR());
+                AIDRepository.save(new AID());
+                FAURepository.save(new FAU());
+                ISRepository.save(new IS());
+                LARepository.save(new LA());
+                MHRepository.save(new MH());
+                PHSTRepository.save(new PHST());
+                PTRepository.save(new PT());*/
+                //pLRepository.save(new PL(data));
+
+            }
+
+        } catch (IOException e) {
+            System.out.println("Nome de arquivo de entrada inválido.");
+            e.printStackTrace();
+        }
+    }
+}
+
+ /*enquanto (line = br.readLine() !=null)
+                    enquanto !line.isEmpty()
+
+                        while(!line.isEmpty()) {
+                            if (lineKeyValue[0].equals("AID")) {//dois atributos na classe
                         AID aid = new AID();
                         aid.setAID(lineKeyValue[1]);
                         aIDList.add(aid);
                     }
+                     if (lineKeyValue[0].equals("PMID")) {
+                        Abstact ab = new Abstract();
+                        pl.setPL(lineKeyValue[1]);
+                        plList.add(pl);
+
                     if (lineKeyValue[0].equals("PL")) {
                         PL pl = new PL();
                         pl.setPL(lineKeyValue[1]);
@@ -128,41 +231,4 @@ public class Processor {
                     }
                     if (lineKeyValue[0].equals("PHST")) {
                         PHST phst = new PHST();
-                        phst.setPHST(lineKeyValue[1]);
-                    }
-                    if (lineKeyValue[0].equals("PMID")) {// aqui estou com duvida, essa classe tem varios atributos, como irei salvar na lista?
-                        Abstract ab = new Abstract();
-                        Long i = Long.parseLong(lineKeyValue[1]);
-                        ab.setPMID(i);
-                    }
-
-                }
-            }
-
-
-            // Essa linha imprimiria todos os objetos processados
-            // dataObjects.forEach(System.out::println);
-            System.out.println("Total de objetos processados e estruturados: " + dataObjects.size());
-
-            // Salva todos os objetos no banco
-            for (DataObject data : dataObjects) {
-
-                data.getValue("PMID");
-                abstractRepository.save(new Abstract());
-                GRRepository.save(new GR());
-                AIDRepository.save(new AID());
-                FAURepository.save(new FAU());
-                ISRepository.save(new IS());
-                LARepository.save(new LA());
-                MHRepository.save(new MH());
-                PHSTRepository.save(new PHST());
-                PLRepository.save(new PL());
-                PTRepository.save(new PT());
-            }
-
-        } catch (IOException e) {
-            System.out.println("Nome de arquivo de entrada inválido.");
-            e.printStackTrace();
-        }
-    }
-}
+                        phst.setPHST(lineKeyValue[1]);*/

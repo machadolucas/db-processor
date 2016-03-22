@@ -2,13 +2,13 @@ package processor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+
 
 /**
- * Classe padrão do SpringBoot
+ * Classe padrï¿½o do SpringBoot
  */
 @SpringBootApplication
-@EnableMongoRepositories
+
 public class Main {
 
     public static void main(String[] args) {
